@@ -168,6 +168,8 @@ function App() {
   const taxAmount = subtotal * taxRate
   const total = subtotal + taxAmount
 
+  const isCustomerMode = !!initialRest;
+
   return (
     <>
       {isOffline && (
@@ -178,36 +180,38 @@ function App() {
       )}
       
       <div className="container" style={{ paddingBottom: '6rem' }}>
-        <div className="nav-tabs" style={{ marginTop: '1rem' }}>
-          <button 
-            className={`nav-tab ${activeTab === 'restaurants' ? 'active' : ''}`}
-            onClick={() => setActiveTab('restaurants')}
-          >
-            <Store size={16} style={{ display: 'inline', verticalAlign: 'text-bottom', marginRight: '6px' }} />
-            Restaurants
-          </button>
-          <button 
-            className={`nav-tab ${activeTab === 'menu' ? 'active' : ''}`}
-            onClick={() => setActiveTab('menu')}
-          >
-            <UtensilsCrossed size={16} style={{ display: 'inline', verticalAlign: 'text-bottom', marginRight: '6px' }} />
-            Menu
-          </button>
-          <button 
-            className={`nav-tab ${activeTab === 'qr' ? 'active' : ''}`}
-            onClick={() => setActiveTab('qr')}
-          >
-            <QrCode size={16} style={{ display: 'inline', verticalAlign: 'text-bottom', marginRight: '6px' }} />
-            QR
-          </button>
-          <button 
-            className={`nav-tab ${activeTab === 'admin' ? 'active' : ''}`}
-            onClick={() => setActiveTab('admin')}
-          >
-            <Settings size={16} style={{ display: 'inline', verticalAlign: 'text-bottom', marginRight: '6px' }} />
-            Admin
-          </button>
-        </div>
+        {!isCustomerMode && (
+          <div className="nav-tabs" style={{ marginTop: '1rem' }}>
+            <button 
+              className={`nav-tab ${activeTab === 'restaurants' ? 'active' : ''}`}
+              onClick={() => setActiveTab('restaurants')}
+            >
+              <Store size={16} style={{ display: 'inline', verticalAlign: 'text-bottom', marginRight: '6px' }} />
+              Restaurants
+            </button>
+            <button 
+              className={`nav-tab ${activeTab === 'menu' ? 'active' : ''}`}
+              onClick={() => setActiveTab('menu')}
+            >
+              <UtensilsCrossed size={16} style={{ display: 'inline', verticalAlign: 'text-bottom', marginRight: '6px' }} />
+              Menu
+            </button>
+            <button 
+              className={`nav-tab ${activeTab === 'qr' ? 'active' : ''}`}
+              onClick={() => setActiveTab('qr')}
+            >
+              <QrCode size={16} style={{ display: 'inline', verticalAlign: 'text-bottom', marginRight: '6px' }} />
+              QR
+            </button>
+            <button 
+              className={`nav-tab ${activeTab === 'admin' ? 'active' : ''}`}
+              onClick={() => setActiveTab('admin')}
+            >
+              <Settings size={16} style={{ display: 'inline', verticalAlign: 'text-bottom', marginRight: '6px' }} />
+              Admin
+            </button>
+          </div>
+        )}
 
         {/* --- RESTAURANTS VIEW --- */}
         {activeTab === 'restaurants' && (
